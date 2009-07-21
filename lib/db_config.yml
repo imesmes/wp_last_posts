@@ -1,0 +1,6 @@
+adapter: mysql
+host: <host>
+username: <user>
+password: <pwd>
+database: <db_name>
+encoding: utf8
