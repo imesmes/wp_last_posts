@@ -1,13 +1,13 @@
 WpLastPosts
 ===========
 
-Introduction goes here.
+This plugin is in development.
 
 
-Example
-=======
+#Aquest plugin serveix per obtenir les últimes entrades d'un blog Wordpress per a ser utilitzades en qualsevol vista d'una aplicació Rails. 
+#-- Installation:
+#-- Usage:
 
-Example goes here.
 
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 [David Morcillo Muñoz], released under the MIT license
