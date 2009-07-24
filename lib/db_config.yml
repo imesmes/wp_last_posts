@@ -2,5 +2,5 @@ adapter: mysql
 host: <host>
 username: <user>
 password: <pwd>
-database: <db_name>
+database: <db>
 encoding: utf8

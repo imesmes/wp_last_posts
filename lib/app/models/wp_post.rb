@@ -4,24 +4,18 @@ class WpPost < ActiveRecord::Base
 
   def self.find_last_posts(number=2)
     last_posts = find_all_by_post_type_and_post_status('post', 'publish', :order => 'post_date DESC', :limit => number)
-    
+    languages = YAML.load_file "#{RAILS_ROOT}/vendor/plugins/wp_last_posts/lib/qlanguages.yml"
+    languages = languages["languages"].split ','
+
     last_posts.each do |p|
       content=p.post_content.split '<!--:-->'
       post_content = {}
 
       content.each do |c|
-        aux = c.split '<!--:ca-->'
-        if aux.size > 1
-          post_content.merge! :ca => aux[1]
-        else
-          aux = c.split '<!--:es-->'
+        languages.each do |l|
+          aux = c.split "<!--:#{l}-->"
           if aux.size > 1
-            post_content.merge! :es => aux[1]
-          else
-            aux = c.split '<!--:en-->'
-            if aux.size > 1
-              post_content.merge! :en => aux[1]
-            end
+            post_content.merge! l.to_sym => aux[1]
           end
         end
       end    
@@ -31,18 +25,10 @@ class WpPost < ActiveRecord::Base
       post_title = {}
 
       title.each do |t|
-        aux = t.split '<!--:ca-->'
-        if aux.size > 1
-          post_title.merge! :ca => aux[1]
-        else
-          aux = t.split '<!--:es-->'
+        languages.each do |l|
+          aux = t.split "<!--:#{l}-->"
           if aux.size > 1
-            post_title.merge! :es => aux[1]
-          else
-            aux = t.split '<!--:en-->'
-            if aux.size > 1
-              post_title.merge!  :en => aux[1]
-            end
+            post_title.merge! l.to_sym => aux[1]
           end
         end
       end    

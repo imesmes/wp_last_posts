@@ -1,13 +1,26 @@
 WpLastPosts
 ===========
 
-This plugin is in development.
+This plugin gets last posts from a WordPress blog for being used in a Rails application.
 
+Important: This plugin assumes a WordPress installation with qtranslate plugin installed.
 
-#Aquest plugin serveix per obtenir les últimes entrades d'un blog Wordpress per a ser utilitzades en qualsevol vista d'una aplicació Rails. 
-#-- Installation:
-#-- Usage:
+-- Installation:
 
+$ script/plugin install git://github.com/imesmes/wp_last_posts.git 
 
+You must edit 'db_config.yml' with your WordPress database configuration:
+$ nano vendor/plugins/wp_last_posts/lib/db_config.yml
+
+You must edit 'qlanguages.yml'
+$ nano vendor/plugins/wp_last_posts/lib/qlanguages.yml
+
+-- Usage:
+
+WpPost.find_last_posts(number_of_posts)
+
+This function returns a collection of models with post_title and post_content translated:
+post_title => {:ca => 'hola', :es => 'hola', :en => 'hello'}
+post_content => {:ca => 'hola', :es => 'hola', :en => 'hello'} 
 
 Copyright (c) 2009 [David Morcillo Muñoz], released under the MIT license
